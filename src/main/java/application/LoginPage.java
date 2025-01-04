@@ -9,12 +9,15 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import java.io.*;
+import java.sql.*;
 
 public class LoginPage extends Application {
 
-    private static final String USER_FILE = "C:/Users/PC/Desktop/users.txt"; // Path to the user file
-    private Runnable loginSuccessCallback; // Declare the loginSuccessCallback
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/pos_system";
+    private static final String DB_USER = "root"; // Replace with your database username
+    private static final String DB_PASSWORD = "root"; // Replace with your database password
+
+    private Runnable loginSuccessCallback;
 
     @Override
     public void start(Stage primaryStage) {
@@ -98,7 +101,7 @@ public class LoginPage extends Application {
                     alert.setContentText("Username already exists!");
                     alert.show();
                 } else {
-                    saveUserToFile(username, password);
+                    saveUserToDatabase(username, password);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setContentText("Registration successful!");
                     alert.show();
@@ -127,47 +130,43 @@ public class LoginPage extends Application {
     }
 
     private boolean verifyUser(String username, String password) {
-        File file = new File(USER_FILE);
-        if (!file.exists()) return false;
+        String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] user = line.split(":");
-                if (user[0].equals(username) && user[1].equals(password)) {
-                    return true;
-                }
-            }
-        } catch (IOException e) {
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // If a row is returned, the user exists
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
 
     private boolean isUserExists(String username) {
-        File file = new File(USER_FILE);
-        if (!file.exists()) return false;
+        String query = "SELECT * FROM users WHERE username = ?";
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
 
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] user = line.split(":");
-                if (user[0].equals(username)) {
-                    return true;
-                }
-            }
-        } catch (IOException e) {
+            stmt.setString(1, username);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // If a row is returned, the user exists
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
 
-    private void saveUserToFile(String username, String password) {
-        File file = new File(USER_FILE);
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
-            bw.write(username + ":" + password);
-            bw.newLine();
-        } catch (IOException e) {
+    private void saveUserToDatabase(String username, String password) {
+        String query = "INSERT INTO users (username, password) VALUES (?, ?)";
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

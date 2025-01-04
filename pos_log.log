@@ -1,0 +1,511 @@
+
+ 07, 2025 9:52:33 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 9:52:34 AM application.POSPage start
+WARNING: CSS file not found.
+Jan 07, 2025 9:52:35 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 9:52:38 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 9:52:38 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 9:52:38 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 9:52:46 AM application.POSPage updateProductInDatabase
+INFO: Updated product: BW26
+Jan 07, 2025 9:52:58 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 9:55:45 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 9:55:45 AM application.POSPage start
+WARNING: CSS file not found.
+Jan 07, 2025 9:55:46 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 9:55:48 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 9:55:48 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 9:55:48 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 9:56:19 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 9:56:20 AM application.POSPage start
+WARNING: CSS file not found.
+Jan 07, 2025 9:56:21 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 9:56:24 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 9:56:24 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 9:56:24 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 9:56:30 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 9:57:24 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 9:57:24 AM application.POSPage start
+WARNING: CSS file not found.
+Jan 07, 2025 9:57:25 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 9:57:27 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 9:57:27 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 9:57:27 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 9:57:39 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 9:59:02 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 9:59:02 AM application.POSPage start
+WARNING: CSS file not found.
+Jan 07, 2025 9:59:03 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 9:59:05 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 9:59:05 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 9:59:05 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 9:59:09 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:02:26 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:02:26 AM application.POSPage start
+WARNING: CSS file not found.
+Jan 07, 2025 10:02:28 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:02:52 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:02:53 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:02:56 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:02:56 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:02:56 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:03:01 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:11:30 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:11:31 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:11:39 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:11:39 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:11:39 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:11:45 AM application.POSPage updateProductInDatabase
+INFO: Updated product: BW26
+Jan 07, 2025 10:12:25 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:14:34 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:14:35 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:14:37 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:14:37 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:14:37 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:14:40 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:16:03 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:16:05 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:16:06 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:16:06 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:16:06 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:16:10 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:16:46 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:16:47 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:16:49 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:16:49 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:16:49 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:16:50 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:20:42 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:20:44 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:20:46 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:20:46 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:20:46 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:20:58 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:21:25 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:21:26 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:21:29 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:21:29 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:21:29 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:21:33 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:22:21 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:22:23 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:22:24 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:22:25 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:22:25 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:22:30 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:23:35 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:23:37 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:23:39 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:23:39 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:23:39 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:23:42 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:24:02 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:24:03 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:24:07 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:24:07 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:24:07 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:24:09 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:24:46 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:24:47 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:24:49 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:24:49 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:24:49 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:24:51 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:26:13 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:26:14 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:26:15 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:26:15 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:26:15 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:26:19 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:30:45 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:30:46 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:30:48 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:30:48 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:30:48 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:30:52 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:32:42 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:32:44 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:32:45 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:32:45 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:32:45 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:32:50 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:34:28 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:34:30 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:34:32 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:38:22 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:38:23 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:38:25 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:38:25 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:38:25 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:38:29 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:40:16 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:40:18 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:40:20 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:40:20 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:40:20 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:40:30 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:40:59 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:41:00 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:41:02 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:41:03 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:41:03 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:41:06 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:44:11 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:44:12 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:44:13 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:44:13 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:44:13 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:44:20 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 10:52:16 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:52:17 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:52:19 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:52:19 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:52:19 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:52:35 AM application.POSPage updateProductInDatabase
+INFO: Product with ID 2 was updated successfully.
+Jan 07, 2025 10:53:24 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 10:53:24 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 10:53:25 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 10:53:25 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 10:53:25 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 10:53:34 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 07, 2025 4:42:49 PM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 4:42:50 PM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 4:42:56 PM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 4:42:56 PM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 4:42:56 PM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 4:42:56 PM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 07, 2025 4:44:08 PM application.POSPage updateProductInDatabase
+INFO: Product with ID 2 was updated successfully.
+Jan 07, 2025 11:03:32 PM application.POSPage start
+INFO: Starting the POS application...
+Jan 07, 2025 11:03:32 PM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 07, 2025 11:03:34 PM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 07, 2025 11:03:34 PM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 07, 2025 11:03:34 PM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 07, 2025 11:03:34 PM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:02:24 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:02:25 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:02:34 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:02:34 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:02:34 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:02:34 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:02:38 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 08, 2025 1:03:50 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:03:51 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:03:53 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:03:53 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:03:53 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:03:53 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:04:01 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 08, 2025 1:04:17 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:04:18 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:04:23 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:04:23 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:04:23 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:04:23 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:04:28 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 08, 2025 1:17:19 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:17:21 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:17:23 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:17:23 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:17:23 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:17:23 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:17:32 AM application.POSPage stop
+INFO: Database connection closed.
+Jan 08, 2025 1:21:25 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:21:26 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:21:45 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:21:45 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:21:45 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:21:45 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:24:23 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:24:24 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:24:31 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:24:31 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:24:31 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:24:31 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:26:02 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:26:03 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:26:06 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:26:06 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:26:06 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:26:06 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:26:20 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:26:20 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:26:20 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:26:29 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:26:29 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:26:29 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:30:18 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:30:19 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:30:22 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:30:22 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:30:22 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:30:22 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:42:34 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:42:36 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:42:44 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:42:44 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:42:44 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:42:44 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:43:02 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:43:03 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:43:06 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:43:06 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:43:06 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:43:06 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:43:52 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:43:52 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:45:41 AM application.POSPage start
+INFO: Starting the POS application...
+Jan 08, 2025 1:45:43 AM application.POSPage start
+INFO: Connected to the database successfully.
+Jan 08, 2025 1:45:44 AM application.POSPage handleNewDayAction
+INFO: New day started.
+Jan 08, 2025 1:45:44 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: Laptop
+Jan 08, 2025 1:45:44 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: BW26
+Jan 08, 2025 1:45:44 AM application.POSPage updateProductPane
+WARNING: Failed to load image for product: dellc lattitude3420
+Jan 08, 2025 1:46:35 AM application.POSPage updateProductInDatabase
+INFO: Product with ID 3 was updated successfully.
+Jan 08, 2025 1:46:41 AM application.POSPage stop
+INFO: Database connection closed.

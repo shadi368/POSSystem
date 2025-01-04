@@ -5,7 +5,9 @@ import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color; // Use JavaFX Color
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -13,12 +15,14 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+
 public class ReportsPage extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // Create a navigation bar (MenuBar)
-        MenuBar menuBar = createNavigationBar(primaryStage);
+        // Create the header navigation bar
+        HBox header = createHeaderNavigation(primaryStage);
+        header.setStyle("-fx-background-color: #3b3b3b; -fx-padding: 10; -fx-alignment: center;");
 
         // Button to load and display reports
         Button generateReportButton = new Button("Generate Report");
@@ -45,7 +49,7 @@ public class ReportsPage extends Application {
 
         // Button action to load reports
         generateReportButton.setOnAction(e -> {
-            String reports = loadReportsFromFile("profit_report.txt");
+            String reports = loadReportsFromFile("sales_report.txt");
             if (reports.isEmpty()) {
                 reportDisplay.setText("No reports available.");
             } else {
@@ -56,7 +60,7 @@ public class ReportsPage extends Application {
 
         // Button action to clear reports
         clearReportButton.setOnAction(e -> {
-            if (clearReportsFile("profit_report.txt")) {
+            if (clearReportsFile("sales_report.txt")) {
                 reportDisplay.setText("Reports have been cleared.");
             } else {
                 reportDisplay.setText("Failed to clear reports.");
@@ -72,7 +76,7 @@ public class ReportsPage extends Application {
         VBox contentLayout = new VBox(10, titleLabel, generateReportButton, clearReportButton, new ScrollPane(reportDisplay));
         contentLayout.setAlignment(Pos.CENTER);
 
-        mainLayout.getChildren().addAll(menuBar, contentLayout);
+        mainLayout.getChildren().addAll(header, contentLayout);
 
         Scene scene = new Scene(mainLayout, 500, 400);
         primaryStage.setTitle("Reports");
@@ -80,29 +84,58 @@ public class ReportsPage extends Application {
         primaryStage.show();
     }
 
-    // Helper method to create the navigation bar
-    private MenuBar createNavigationBar(Stage primaryStage) {
-        MenuBar menuBar = new MenuBar();
+    // Method to create the header navigation bar (consistent with POSPage, Dashboard, and ProductManagementPage)
+    private HBox createHeaderNavigation(Stage primaryStage) {
+        HBox header = new HBox(10); // 10px spacing between buttons
+        header.getStyleClass().add("header"); // Apply CSS class for styling
 
-        Menu homeMenu = new Menu("Home");
-        MenuItem homeItem = new MenuItem("Go to Home");
-        homeItem.setOnAction(e -> {
-            MainPage mainPage = new MainPage();
-            try {
-                mainPage.start(primaryStage); // Navigate to MainPage
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+        // Create buttons for navigation
+        Button dashboardButton = createHeaderButton("Dashboard");
+        Button productManagementButton = createHeaderButton("Product Management");
+        Button posButton = createHeaderButton("POS");
+        Button reportsButton = createHeaderButton("Reports");
+        Button inventoryButton = createHeaderButton("Inventory");
+        Button exitButton = createHeaderButton("Exit");
+
+        // Set actions for each button
+        dashboardButton.setOnAction(e -> new Dashboard().start(new Stage()));
+        productManagementButton.setOnAction(e -> new ProductManagementPage().start(new Stage()));
+        posButton.setOnAction(e -> new POSPage().start(new Stage()));
+        reportsButton.setOnAction(e -> new ReportsPage().start(new Stage()));
+        inventoryButton.setOnAction(e -> new InventoryPage().start(new Stage()));
+
+        // Set action for the exit button
+        exitButton.setOnAction(event -> {
+            System.out.println("Exiting the application");
+            primaryStage.close();
         });
-        homeMenu.getItems().add(homeItem);
 
-        Menu exitMenu = new Menu("Exit");
-        MenuItem exitItem = new MenuItem("Exit Application");
-        exitItem.setOnAction(e -> primaryStage.close());
-        exitMenu.getItems().add(exitItem);
+        // Add all buttons to the header
+        header.getChildren().addAll(
+                dashboardButton,
+                productManagementButton,
+                posButton,
+                reportsButton,
+                inventoryButton,
+                exitButton
+        );
 
-        menuBar.getMenus().addAll(homeMenu, exitMenu);
-        return menuBar;
+        return header;
+    }
+
+    // Method to create header buttons (consistent with POSPage, Dashboard, and ProductManagementPage)
+    private Button createHeaderButton(String text) {
+        Button button = new Button(text);
+        button.setStyle("-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;");
+        button.setOnMouseEntered(e -> {
+            button.setStyle("-fx-background-color: #6200ea; -fx-text-fill: white;");
+            button.setEffect(new DropShadow(10, Color.BLACK));
+        });
+        button.setOnMouseExited(e -> {
+            button.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
+            button.setEffect(null);
+        });
+        return button;
     }
 
     // Helper method to load reports from a file
@@ -140,15 +173,27 @@ public class ReportsPage extends Application {
         }
     }
 
-    // Helper method to format reports for better readability
+    // Helper method to format reports for better readability and details
     private String formatReports(String reports) {
         String[] lines = reports.split("\n");
         StringBuilder formattedReport = new StringBuilder();
-        formattedReport.append("===== Profit Report =====\n\n");
+
+        formattedReport.append("===== Detailed Profit Report =====\n\n");
+
         for (String line : lines) {
-            formattedReport.append("- ").append(line).append("\n");
+            // Example of how we might split each report entry for detailed sections
+            String[] parts = line.split(",");
+            if (parts.length == 3) {
+                formattedReport.append("Date: ").append(parts[0].trim()).append("\n");
+                formattedReport.append("Profit: ").append(parts[1].trim()).append("\n");
+                formattedReport.append("Items Sold: ").append(parts[2].trim()).append("\n");
+                formattedReport.append("--------------------------------\n");
+            } else {
+                formattedReport.append(line).append("\n");
+            }
         }
-        formattedReport.append("\n=========================");
+
+        formattedReport.append("\n===============================");
         return formattedReport.toString();
     }
 

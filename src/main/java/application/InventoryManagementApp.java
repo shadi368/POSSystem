@@ -7,8 +7,8 @@ public class InventoryManagementApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        // Create an instance of the ProductManagementPage
-        new ProductManagementPage().start(primaryStage);  // Start the ProductManagementPage
+        // Create an instance of ProductManagementPage
+        new ProductManagementPage().start(primaryStage);  // Start ProductManagementPage
     }
 
     public static void main(String[] args) {

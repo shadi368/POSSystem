@@ -1,0 +1,119 @@
+/* Root Styles */
+.root {
+    -fx-background-color: #f4f6f9;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -fx-text-fill: #333;
+}
+
+/* Table Styling */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #ddd;
+    -fx-border-width: 1px;
+    -fx-padding: 10px;
+    -fx-pref-width: 600px;
+    -fx-pref-height: 400px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2980b9;
+    -fx-text-fill: white;
+}
+
+.table-view .table-row-cell {
+    -fx-padding: 8px;
+}
+
+.table-view .table-cell {
+    -fx-alignment: center-left;
+    -fx-padding: 5px;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #ecf0f1;
+}
+
+/* Form Layout */
+.vbox {
+    -fx-background-color: white;
+    -fx-padding: 15px;
+    -fx-spacing: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+}
+
+.label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Text Fields */
+.text-field {
+    -fx-pref-width: 250px;
+    -fx-padding: 8px;
+    -fx-background-color: #ecf0f1;
+    -fx-border-radius: 5px;
+    -fx-border-color: #ccc;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-background-color: #2ecc71;
+}
+
+/* Choose Image Button */
+.button.choose-image {
+    -fx-background-color: #3498db;
+}
+
+.button.choose-image:hover {
+    -fx-background-color: #2980b9;
+}
+
+/* Barcode Generation */
+.image-view {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 100px;
+    -fx-padding: 5px;
+}
+
+/* Menu Bar */
+.menu-bar {
+    -fx-background-color: #34495e;
+}
+
+.menu-bar .menu {
+    -fx-text-fill: white;
+}
+
+.menu-bar .menu-item {
+    -fx-text-fill: #ecf0f1;
+}
+
+.menu-bar .menu-item:hover {
+    -fx-background-color: #2980b9;
+    -fx-text-fill: white;
+}
+
+/* Alert Dialog */
+.alert {
+    -fx-background-color: #f39c12;
+    -fx-text-fill: white;
+}

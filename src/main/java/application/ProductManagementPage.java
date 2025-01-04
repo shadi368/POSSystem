@@ -1,31 +1,97 @@
 package application;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 
-import java.io.*;
+import java.io.File;
+import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class ProductManagementPage extends Application {
+    private BorderPane root;
+
+    private void showProductManagementPage(Stage primaryStage) {
+        System.out.println("Navigating to Product Management Page");
+
+        // Create the Product Management UI
+        ProductManagementPage productManagementPage = new ProductManagementPage();
+
+        // Set the Product Management UI as the scene for the primary stage
+        Scene productManagementScene = new Scene(productManagementPage.getRoot(), 800, 600);
+        productManagementScene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm()); // Apply CSS
+        primaryStage.setScene(productManagementScene);
+        primaryStage.setTitle("Product Management Page");
+        primaryStage.show();
+    }
+
+    public Parent getRoot() {
+        return root;
+    }
+
+    private static final String URL = "jdbc:mysql://localhost:3306/pos_system";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "root";
+    private static Connection connection;
+
+    // Database Connection
+    private Connection getConnection() throws SQLException {
+        if (connection == null || connection.isClosed()) {
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        }
+        return connection;
+    }
+
+    private String generateRandomBarcode() {
+        Random random = new Random();
+        StringBuilder barcode = new StringBuilder();
+        for (int i = 0; i < 12; i++) {
+            barcode.append(random.nextInt(10)); // Generate random 12-digit barcode
+        }
+        return barcode.toString();
+    }
+
+    private Image generateBarcode(String value) {
+        try {
+            // Use ZXing to generate a barcode
+            MultiFormatWriter writer = new MultiFormatWriter();
+            BitMatrix bitMatrix = writer.encode(value, BarcodeFormat.CODE_128, 200, 100); // Adjust size as needed
+
+            // Convert BitMatrix to Image
+            javafx.scene.image.WritableImage image = new javafx.scene.image.WritableImage(bitMatrix.getWidth(), bitMatrix.getHeight());
+            for (int x = 0; x < bitMatrix.getWidth(); x++) {
+                for (int y = 0; y < bitMatrix.getHeight(); y++) {
+                    image.getPixelWriter().setColor(x, y, bitMatrix.get(x, y) ? Color.BLACK : Color.WHITE);
+                }
+            }
+            return image;
+        } catch (WriterException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     @Override
     public void start(Stage primaryStage) {
-        // Create navigation bar
-        MenuBar menuBar = createMenuBar(primaryStage);
+        // Create the header navigation bar
+        HBox header = createHeaderNavigation(primaryStage);
+        header.setStyle("-fx-background-color: #3b3b3b; -fx-padding: 10; -fx-alignment: center;");
 
         // Table for displaying products
         TableView<Map<String, Object>> table = new TableView<>();
@@ -37,6 +103,8 @@ public class ProductManagementPage extends Application {
         TableColumn<Map<String, Object>, Double> sellingPriceColumn = new TableColumn<>("Selling Price");
         TableColumn<Map<String, Object>, Double> costPriceColumn = new TableColumn<>("Cost Price");
         TableColumn<Map<String, Object>, Integer> quantityColumn = new TableColumn<>("Quantity");
+        TableColumn<Map<String, Object>, String> imageColumn = new TableColumn<>("Image Path");
+        TableColumn<Map<String, Object>, String> barcodeColumn = new TableColumn<>("Barcode");
 
         // Set the cell value factory for each column
         nameColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty((String) cellData.getValue().get("name")));
@@ -44,19 +112,15 @@ public class ProductManagementPage extends Application {
         sellingPriceColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>((Double) cellData.getValue().get("sellingPrice")));
         costPriceColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>((Double) cellData.getValue().get("costPrice")));
         quantityColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleObjectProperty<>((Integer) cellData.getValue().get("quantity")));
+        imageColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty((String) cellData.getValue().get("image")));
+        barcodeColumn.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty((String) cellData.getValue().get("barcode")));
 
         // Add columns to the table
-        table.getColumns().addAll(nameColumn, categoryColumn, sellingPriceColumn, costPriceColumn, quantityColumn);
+        table.getColumns().addAll(nameColumn, categoryColumn, sellingPriceColumn, costPriceColumn, quantityColumn, imageColumn, barcodeColumn);
 
-        // Load data from the file
-        loadProductsFromFile("products.txt", data);
+        // Load products from the database
+        loadProductsFromDatabase(data);
         table.setItems(data);
-
-        // Apply fade-in animation to the table
-        FadeTransition tableFadeIn = new FadeTransition(Duration.seconds(1), table);
-        tableFadeIn.setFromValue(0);
-        tableFadeIn.setToValue(1);
-        tableFadeIn.play();
 
         // Form for editing products
         TextField nameField = new TextField();
@@ -68,26 +132,32 @@ public class ProductManagementPage extends Application {
         imageField.setPromptText("Image Path");
         imageField.setEditable(false); // Make the field non-editable
 
+        // Barcode TextField and ImageView
+        TextField barcodeField = new TextField();
+        barcodeField.setPromptText("Scan or Enter Barcode");
+        ImageView barcodeImageView = new ImageView();
+
         // Button to open image chooser
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
         Button chooseImageButton = new Button("Choose Image");
+        chooseImageButton.setStyle("-fx-background-color: #6200ea; -fx-text-fill: white;");
+
         chooseImageButton.setOnAction(event -> {
             File selectedFile = fileChooser.showOpenDialog(primaryStage);
             if (selectedFile != null) {
-                // Update the image path in the product form
-                String imagePath = selectedFile.getAbsolutePath();
-                imageField.setText(imagePath); // Set image path in the field
+                imageField.setText(selectedFile.getAbsolutePath());
             }
         });
 
+        Button addButton = new Button("Add Product");
+        addButton.setStyle("-fx-background-color: #6200ea; -fx-text-fill: white;");
+
         Button updateButton = new Button("Update Product");
+        updateButton.setStyle("-fx-background-color: #6200ea; -fx-text-fill: white;");
         updateButton.setDisable(true); // Initially disabled
 
-        // Add product form fields
-        Button addButton = new Button("Add Product");
-
-        // Enable form when a row is selected
+        // Enable form when a row is selected for update
         table.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 nameField.setText((String) newSelection.get("name"));
@@ -96,17 +166,53 @@ public class ProductManagementPage extends Application {
                 costPriceField.setText(String.valueOf(newSelection.get("costPrice")));
                 quantityField.setText(String.valueOf(newSelection.get("quantity")));
                 imageField.setText((String) newSelection.get("image"));
+                barcodeField.clear(); // Clear manual barcode input
                 updateButton.setDisable(false);
 
-                // Slide-in animation for the form when a product is selected
-                TranslateTransition slideIn = new TranslateTransition(Duration.seconds(0.5), nameField);
-                slideIn.setFromX(-300);
-                slideIn.setToX(0);
-                slideIn.play();
+                // Generate and display barcode if not entered manually
+                String barcodeValue = (String) newSelection.get("barcode");
+                if (barcodeValue != null && !barcodeValue.isEmpty()) {
+                    Image barcodeImage = generateBarcode(barcodeValue);
+                    barcodeImageView.setImage(barcodeImage);
+                }
             }
         });
 
-        // Update the product details
+        // Add product functionality
+        addButton.setOnAction(event -> {
+            try {
+                // Get new values from the form
+                String newName = nameField.getText().trim();
+                String newCategory = categoryField.getText().trim();
+                double newSellingPrice = Double.parseDouble(sellingPriceField.getText().trim());
+                double newCostPrice = Double.parseDouble(costPriceField.getText().trim());
+                int newQuantity = Integer.parseInt(quantityField.getText().trim());
+                String imagePath = imageField.getText().trim();
+                String barcode = barcodeField.getText().trim();
+
+                if (barcode.isEmpty()) {
+                    barcode = generateRandomBarcode(); // Generate barcode if not provided
+                }
+
+                // Create a new product
+                addProductToDatabase(newName, newCategory, newSellingPrice, newCostPrice, newQuantity, imagePath, barcode);
+                data.clear();
+                loadProductsFromDatabase(data); // Reload updated data
+
+                // Clear form after adding the product
+                nameField.clear();
+                categoryField.clear();
+                sellingPriceField.clear();
+                costPriceField.clear();
+                quantityField.clear();
+                imageField.clear();
+                barcodeField.clear();
+            } catch (NumberFormatException e) {
+                showAlert("Invalid Input", "Price, selling price, and quantity must be numeric.");
+            }
+        });
+
+        // Update product functionality
         updateButton.setOnAction(event -> {
             Map<String, Object> selectedProduct = table.getSelectionModel().getSelectedItem();
             if (selectedProduct != null) {
@@ -117,21 +223,20 @@ public class ProductManagementPage extends Application {
                     double newSellingPrice = Double.parseDouble(sellingPriceField.getText().trim());
                     double newCostPrice = Double.parseDouble(costPriceField.getText().trim());
                     int newQuantity = Integer.parseInt(quantityField.getText().trim());
-                    String imagePath = imageField.getText().trim(); // Get the image path
+                    String imagePath = imageField.getText().trim();
+                    String barcode = barcodeField.getText().trim();
 
-                    // Update product details
-                    selectedProduct.put("name", newName);
-                    selectedProduct.put("category", newCategory);
-                    selectedProduct.put("sellingPrice", newSellingPrice);
-                    selectedProduct.put("costPrice", newCostPrice);
-                    selectedProduct.put("quantity", newQuantity);
-                    selectedProduct.put("image", imagePath); // Update image path
+                    if (barcode.isEmpty()) {
+                        barcode = generateRandomBarcode();
+                    }
 
-                    // Refresh the table to show updated data
-                    table.refresh();
+                    // Update product in the database
+                    int productId = (Integer) selectedProduct.get("id");
+                    updateProductInDatabase(productId, newName, newCategory, newSellingPrice, newCostPrice, newQuantity, imagePath, barcode);
 
-                    // Save updated data back to the file
-                    saveAllProductsToFile("products.txt", data);
+                    // Reload data
+                    data.clear();
+                    loadProductsFromDatabase(data);
 
                     // Clear form
                     nameField.clear();
@@ -140,57 +245,22 @@ public class ProductManagementPage extends Application {
                     costPriceField.clear();
                     quantityField.clear();
                     imageField.clear();
-                    updateButton.setDisable(true); // Disable button until a new row is selected
+                    barcodeField.clear();
+                    updateButton.setDisable(true);
                 } catch (NumberFormatException e) {
                     showAlert("Invalid Input", "Price, selling price, and quantity must be numeric.");
                 }
             }
         });
 
-        // Add a new product to the table
-        addButton.setOnAction(event -> {
-            try {
-                // Get values from the form to add a new product
-                String newName = nameField.getText().trim();
-                String newCategory = categoryField.getText().trim();
-                double newSellingPrice = Double.parseDouble(sellingPriceField.getText().trim());
-                double newCostPrice = Double.parseDouble(costPriceField.getText().trim());
-                int newQuantity = Integer.parseInt(quantityField.getText().trim());
-                String imagePath = imageField.getText().trim(); // Get the image path
-
-                // Create a new product
-                Map<String, Object> newProduct = createProduct(newName, newCategory, newSellingPrice, newCostPrice, newQuantity, imagePath);
-
-                // Add the new product to the table
-                data.add(newProduct);
-
-                // Save the new product to the file
-                saveAllProductsToFile("products.txt", data);
-
-                // Clear the form
-                nameField.clear();
-                categoryField.clear();
-                sellingPriceField.clear();
-                costPriceField.clear();
-                quantityField.clear();
-                imageField.clear();
-
-            } catch (NumberFormatException e) {
-                showAlert("Invalid Input", "Price, selling price, and quantity must be numeric.");
-            }
-        });
-
-        // Delete selected product
-        Button deleteButton = new Button("Delete Product");
-        deleteButton.setOnAction(event -> {
-            Map<String, Object> selectedProduct = table.getSelectionModel().getSelectedItem();
-            if (selectedProduct != null) {
-                data.remove(selectedProduct);
-                saveAllProductsToFile("products.txt", data);
-                table.refresh(); // Refresh the table after removal
-            } else {
-                showAlert("No Selection", "Please select a product to delete.");
-            }
+        // Generate barcode button functionality
+        Button generateBarcodeButton = new Button("Generate Random Barcode");
+        generateBarcodeButton.setStyle("-fx-background-color: #6200ea; -fx-text-fill: white;");
+        generateBarcodeButton.setOnAction(event -> {
+            String barcode = generateRandomBarcode();
+            barcodeField.setText(barcode); // Set the generated barcode in the text input
+            Image barcodeImage = generateBarcode(barcode);
+            barcodeImageView.setImage(barcodeImage); // Display the generated barcode image
         });
 
         // Layout for product editing form
@@ -201,126 +271,149 @@ public class ProductManagementPage extends Application {
                 new Label("Cost Price:"), costPriceField,
                 new Label("Quantity:"), quantityField,
                 chooseImageButton, imageField,
-                addButton, updateButton, deleteButton
+                new Label("Barcode:"), barcodeField,
+                new Label("Generated Barcode:"), barcodeImageView,
+                generateBarcodeButton, // Add the barcode generation button
+                addButton, updateButton
         );
+        formLayout.setPrefWidth(300);
 
-        // Apply fade-in animation to the form
-        FadeTransition formFadeIn = new FadeTransition(Duration.seconds(1), formLayout);
-        formFadeIn.setFromValue(0);
-        formFadeIn.setToValue(1);
-        formFadeIn.play();
+        // Wrap the root layout in a ScrollPane
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(new HBox(10, table, formLayout));
 
-        HBox mainLayout = new HBox(10, table, formLayout);
+        // Main layout using BorderPane
+        BorderPane root = new BorderPane();
+        root.setTop(header); // Header at the top
+        root.setCenter(scrollPane); // Main content in the center
 
-        VBox mainLayoutWithMenu = new VBox(menuBar, mainLayout);
-        Scene scene = new Scene(mainLayoutWithMenu, 800, 400);
+        // Create Scene and apply styles
+        Scene scene = new Scene(root, 900, 600);
+        scene.getStylesheets().add(getClass().getResource("/views/product_management.css").toExternalForm());
 
         primaryStage.setTitle("Product Management");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    // Create navigation menu bar with links to all pages
-    private MenuBar createMenuBar(Stage primaryStage) {
-        Menu menu = new Menu("Navigation");
+    // Method to create the header navigation bar (consistent with POSPage and Dashboard)
+    private HBox createHeaderNavigation(Stage primaryStage) {
+        HBox header = new HBox(10); // 10px spacing between buttons
+        header.getStyleClass().add("header"); // Apply CSS class for styling
 
-        // Create menu items for each page
-        MenuItem productManagementMenuItem = new MenuItem("Product Management");
-        productManagementMenuItem.setOnAction(event -> {
-            new ProductManagementPage().start(new Stage());
-            primaryStage.close();
-        });
+        // Create buttons for navigation
+        Button dashboardButton = createHeaderButton("Dashboard");
+        Button productManagementButton = createHeaderButton("Product Management");
+        Button posButton = createHeaderButton("POS");
+        Button reportsButton = createHeaderButton("Reports");
+        Button inventoryButton = createHeaderButton("Inventory");
+        Button exitButton = createHeaderButton("Exit");
 
-        MenuItem POSPageMenuItem = new MenuItem("POS Page");
-        POSPageMenuItem.setOnAction(event -> {
-            new POSPage().start(new Stage()); // Open POS page
-            primaryStage.close();  // Close the current ProductManagementPage window
-        });
+        // Set actions for each button
+        dashboardButton.setOnAction(e -> new Dashboard().start(new Stage()));
+        productManagementButton.setOnAction(e -> new ProductManagementPage().start(new Stage()));
+        posButton.setOnAction(e -> new POSPage().start(new Stage()));
+        reportsButton.setOnAction(e -> new ReportsPage().start(new Stage()));
+        inventoryButton.setOnAction(e -> new InventoryPage().start(new Stage()));
 
-        MenuItem reportsPageMenuItem = new MenuItem("Reports Page");
-        reportsPageMenuItem.setOnAction(event -> {
-            System.out.println("Navigating to Reports Page");
-            // Replace with actual navigation logic for Reports Page
-        });
-
-        MenuItem inventoryPageMenuItem = new MenuItem("Inventory Page");
-        inventoryPageMenuItem.setOnAction(event -> {
-            new InventoryPage().start(new Stage());
-            primaryStage.close(); // Close current page
-        });
-
-        // Add the new MainPage menu item
-        MenuItem mainPageMenuItem = new MenuItem("Main Page");
-        mainPageMenuItem.setOnAction(event -> {
-            new MainPage().start(new Stage()); // Open MainPage
-            primaryStage.close(); // Close the current window
-        });
-
-        MenuItem exitMenuItem = new MenuItem("Exit");
-        exitMenuItem.setOnAction(event -> {
+        // Set action for the exit button
+        exitButton.setOnAction(event -> {
             System.out.println("Exiting the application");
             primaryStage.close();
         });
 
-        // Add all menu items to the menu
-        menu.getItems().addAll(
-                mainPageMenuItem,  // Add MainPage navigation
-                productManagementMenuItem,
-                POSPageMenuItem,
-                reportsPageMenuItem,
-                inventoryPageMenuItem,
-                exitMenuItem
+        // Add all buttons to the header
+        header.getChildren().addAll(
+                dashboardButton,
+                productManagementButton,
+                posButton,
+                reportsButton,
+                inventoryButton,
+                exitButton
         );
 
-        return new MenuBar(menu);
+        return header;
     }
 
-    private void loadProductsFromFile(String fileName, ObservableList<Map<String, Object>> data) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length == 6) { // Account for the image path
-                    String name = parts[0].trim();
-                    String category = parts[1].trim();
-                    double sellingPrice = Double.parseDouble(parts[2].trim());
-                    double costPrice = Double.parseDouble(parts[3].trim());
-                    int quantity = Integer.parseInt(parts[4].trim());
-                    String imagePath = parts[5].trim(); // Image path is the 6th element
-                    Map<String, Object> product = createProduct(name, category, sellingPrice, costPrice, quantity, imagePath);
-                    data.add(product);
-                }
+    // Method to create header buttons (consistent with POSPage and Dashboard)
+    private Button createHeaderButton(String text) {
+        Button button = new Button(text);
+        button.setStyle("-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-cursor: hand;");
+        button.setOnMouseEntered(e -> {
+            button.setStyle("-fx-background-color: #6200ea; -fx-text-fill: white;");
+            button.setEffect(new DropShadow(10, Color.BLACK));
+        });
+        button.setOnMouseExited(e -> {
+            button.setStyle("-fx-background-color: transparent; -fx-text-fill: white;");
+            button.setEffect(null);
+        });
+        return button;
+    }
+
+    // Load products from the database
+    private void loadProductsFromDatabase(ObservableList<Map<String, Object>> data) {
+        try (Connection connection = getConnection()) {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM products");
+            while (rs.next()) {
+                Map<String, Object> product = new HashMap<>();
+                product.put("id", rs.getInt("id"));
+                product.put("name", rs.getString("name"));
+                product.put("category", rs.getString("category"));
+                product.put("sellingPrice", rs.getDouble("selling_price"));
+                product.put("costPrice", rs.getDouble("cost_price"));
+                product.put("quantity", rs.getInt("quantity"));
+                product.put("image", rs.getString("image"));
+                product.put("barcode", rs.getString("barcode"));
+                data.add(product);
             }
-        } catch (IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void saveAllProductsToFile(String fileName, ObservableList<Map<String, Object>> data) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            for (Map<String, Object> product : data) {
-                String imagePath = (String) product.get("image"); // Get the image path
-                writer.write(product.get("name") + "," + product.get("category") + "," + product.get("sellingPrice") + "," + product.get("costPrice") + "," + product.get("quantity") + "," + imagePath);
-                writer.newLine();
+    // Add product to the database
+    private void addProductToDatabase(String name, String category, double sellingPrice, double costPrice, int quantity, String image, String barcode) {
+        try (Connection connection = getConnection()) {
+            String sql = "INSERT INTO products (name, category, selling_price, cost_price, quantity, image, barcode) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                stmt.setString(1, name);
+                stmt.setString(2, category);
+                stmt.setDouble(3, sellingPrice);
+                stmt.setDouble(4, costPrice);
+                stmt.setInt(5, quantity);
+                stmt.setString(6, image);
+                stmt.setString(7, barcode);
+                stmt.executeUpdate();
             }
-        } catch (IOException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private Map<String, Object> createProduct(String name, String category, double sellingPrice, double costPrice, int quantity, String imagePath) {
-        Map<String, Object> product = new HashMap<>();
-        product.put("name", name);
-        product.put("category", category);
-        product.put("sellingPrice", sellingPrice);
-        product.put("costPrice", costPrice);
-        product.put("quantity", quantity);
-        product.put("image", imagePath); // Store the image path
-        return product;
+    // Update product in the database
+    private void updateProductInDatabase(int id, String name, String category, double sellingPrice, double costPrice, int quantity, String image, String barcode) {
+        try (Connection connection = getConnection()) {
+            String sql = "UPDATE products SET name = ?, category = ?, selling_price = ?, cost_price = ?, quantity = ?, image = ?, barcode = ? WHERE id = ?";
+            try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                stmt.setString(1, name);
+                stmt.setString(2, category);
+                stmt.setDouble(3, sellingPrice);
+                stmt.setDouble(4, costPrice);
+                stmt.setInt(5, quantity);
+                stmt.setString(6, image);
+                stmt.setString(7, barcode);
+                stmt.setInt(8, id);
+                stmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
+    // Show alert message
     private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

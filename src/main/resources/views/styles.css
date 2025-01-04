@@ -1,0 +1,188 @@
+/* Root element styles */
+.root {
+    -fx-font-family: "Arial", sans-serif;
+    -fx-background-color: #f5f5f5; /* Light gray background */
+    -fx-padding: 20px; /* Add some padding around the root */
+}
+
+/* Menu bar styles */
+.menu-bar {
+    -fx-background-color: #3b3b3b; /* Dark background for menu bar */
+    -fx-padding: 10px; /* Add padding to the menu */
+}
+
+/* Menu styles */
+.menu {
+    -fx-text-fill: white; /* White text for menus */
+    -fx-font-weight: bold; /* Make the menu text bold */
+}
+
+/* Menu item styles */
+.menu-item {
+    -fx-text-fill: #9e9e9e; /* Light gray text color */
+    -fx-padding: 10px 20px; /* Add padding to menu items for better click area */
+    -fx-font-size: 14px; /* Slightly larger font for better readability */
+    -fx-background-color: transparent; /* Transparent background */
+}
+
+/* Hover effect for menu items */
+.menu-item:hover {
+    -fx-background-color: #6200ea; /* Purple background on hover */
+    -fx-text-fill: white; /* White text on hover */
+    -fx-font-weight: bold; /* Make text bold on hover */
+    -fx-border-radius: 5px; /* Add rounded corners for better aesthetics */
+    -fx-effect: dropshadow(three-pass-box, #000, 4, 0, 0, 2); /* Add a subtle shadow for focus */
+}
+
+/* Button styles */
+.button {
+    -fx-background-color: #6200ea; /* Purple background */
+    -fx-text-fill: white; /* White text */
+    -fx-font-size: 14px;
+    -fx-padding: 10px 20px; /* Increase padding for a better click area */
+    -fx-border-radius: 5px; /* Rounded corners for a softer look */
+    -fx-font-weight: bold; /* Bold text for emphasis */
+    -fx-effect: dropshadow(three-pass-box, #000, 5, 0, 0, 3); /* Add shadow for depth */
+}
+
+/* Hover effect for buttons */
+.button:hover {
+    -fx-background-color: #3700b3; /* Darker shade for hover effect */
+    -fx-effect: dropshadow(three-pass-box, #000, 8, 0, 0, 5); /* Enhance shadow on hover */
+}
+
+/* Tooltip styles */
+.tooltip {
+    -fx-background-color: #6200ea; /* Use the same theme color for tooltips */
+    -fx-text-fill: white; /* White text */
+    -fx-font-size: 12px;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 5px; /* Rounded corners */
+    -fx-border-radius: 5px;
+}
+
+/* VBox layout styles */
+.vbox {
+    -fx-spacing: 15px; /* Increase space between elements */
+    -fx-alignment: center; /* Center the items */
+}
+
+/* Product card styles */
+.product-card {
+    -fx-background-color: white; /* White background */
+    -fx-border-color: #ccc; /* Light gray border */
+    -fx-border-radius: 10px; /* Rounded corners */
+    -fx-padding: 15px; /* Add padding */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 5); /* Add shadow for depth */
+}
+
+/* Hover effect for product cards */
+.product-card:hover {
+    -fx-background-color: #f0f0f0; /* Light gray background on hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 15, 0, 0, 10); /* Enhance shadow on hover */
+}
+
+/* Price label styles */
+.price {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27ae60; /* Green text for price */
+}
+
+/* Dark mode toggle button styles */
+.toggle-dark-mode {
+    -fx-background-color: #34495e; /* Dark background */
+    -fx-text-fill: white; /* White text */
+    -fx-padding: 10px; /* Add padding */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-effect: dropshadow(three-pass-box, #000, 5, 0, 0, 3); /* Add shadow for depth */
+}
+
+/* Hover effect for dark mode toggle button */
+.toggle-dark-mode:hover {
+    -fx-background-color: #2c3e50; /* Darker background on hover */
+}
+/* MenuBar styles */
+.menu-bar {
+    -fx-background-color: #3b3b3b; /* Dark background for the MenuBar */
+    -fx-padding: 5px; /* Add some padding */
+}
+
+/* Menu styles */
+.menu {
+    -fx-text-fill: white; /* White text for the Menu */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Menu hover effect */
+.menu:hover {
+    -fx-background-color: #6200ea; /* Purple background on hover */
+}
+
+/* MenuItem styles */
+.menu-item {
+    -fx-text-fill: #333; /* Dark text for MenuItems */
+    -fx-font-size: 13px;
+    -fx-padding: 5px 10px; /* Add padding to MenuItems */
+    -fx-background-color: white; /* White background for MenuItems */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-background-radius: 5px;
+}
+
+/* MenuItem hover effect */
+.menu-item:hover {
+    -fx-background-color: #6200ea; /* Purple background on hover */
+    -fx-text-fill: white; /* White text on hover */
+}
+
+/* MenuItem graphic (icon) styles */
+.menu-item .graphic {
+    -fx-padding: 0 5px 0 0; /* Add padding to the graphic */
+}
+
+/* Exit MenuItem style */
+.menu-item.exit {
+    -fx-background-color: #e74c3c; /* Red background for the exit MenuItem */
+    -fx-text-fill: white; /* White text */
+}
+
+.menu-item.exit:hover {
+    -fx-background-color: #c0392b; /* Darker red on hover */
+}
+/* Header styles */
+.header {
+    -fx-background-color: #3b3b3b; /* Dark background for the header */
+    -fx-padding: 10px; /* Add padding */
+    -fx-alignment: center; /* Center the buttons horizontally */
+    -fx-spacing: 10px; /* Add spacing between buttons */
+}
+
+/* Header button styles */
+.header-button {
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-text-fill: white; /* White text */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+    -fx-padding: 10px 20px; /* Add padding */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-background-radius: 5px;
+}
+
+/* Header button hover effect */
+.header-button:hover {
+    -fx-background-color: #6200ea; /* Purple background on hover */
+    -fx-text-fill: white; /* White text on hover */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 10, 0, 0, 5); /* Add shadow for depth */
+}
+
+/* Exit button style */
+.header-button.exit {
+    -fx-background-color: #e74c3c; /* Red background for the exit button */
+    -fx-text-fill: white; /* White text */
+}
+
+.header-button.exit:hover {
+    -fx-background-color: #c0392b; /* Darker red on hover */
+}

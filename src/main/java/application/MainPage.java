@@ -51,22 +51,31 @@ public class MainPage extends Application {
             primaryStage.close();
         });
 
-        // Layout setup for the MainPage (navigation only)
-        VBox layout = new VBox(15, menuBar, inventoryButton, reportsButton, productManagementButton, posButton, exitButton);
-        layout.setStyle("-fx-padding: 20px; -fx-background-color: #f0f4f7;");
-        layout.setPrefSize(400, 300);
+        // Organize buttons in a VBox with alignment and spacing
+        VBox buttonLayout = new VBox(15, inventoryButton, reportsButton, productManagementButton, posButton, exitButton);
+        buttonLayout.setAlignment(Pos.CENTER); // Center the buttons
+        buttonLayout.setStyle("-fx-padding: 20px; -fx-background-color: #f0f4f7;");
+
+        // Wrap the buttons and menu bar in a BorderPane for better structure
+        BorderPane rootLayout = new BorderPane();
+        rootLayout.setTop(menuBar);
+        rootLayout.setCenter(buttonLayout);
+
+        // Align menu bar to the top center
+        BorderPane.setAlignment(menuBar, Pos.TOP_CENTER);
 
         // Add a fade-in animation for the entire layout
-        FadeTransition fadeInTransition = new FadeTransition(Duration.seconds(1), layout);
+        FadeTransition fadeInTransition = new FadeTransition(Duration.seconds(1), rootLayout);
         fadeInTransition.setFromValue(0);
         fadeInTransition.setToValue(1);
         fadeInTransition.play();
 
         // Set the scene for the MainPage
-        Scene scene = new Scene(layout, 400, 300);
+        Scene scene = new Scene(rootLayout, 400, 300);
         primaryStage.setTitle("System Navigation");
         primaryStage.setScene(scene);
         primaryStage.show();
+
     }
 
     // Helper method to create animated buttons
